@@ -391,6 +391,6 @@ jobs:
 
 ## Also see
 
-- [YAML](/yaml) _(cheatsheets.zip)_
-- [Github](/github) _(cheatsheets.zip)_
+- [YAML](/yaml) _(Cheatly)_
+- [Github](/github) _(Cheatly)_
 - [Github Actions Documentation](https://docs.github.com/en/actions)_(docs.github.com/en/actions)_

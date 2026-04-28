@@ -1,6 +1,6 @@
 ---
 title: Buy Me a Coffee
-description: Support the development of CheatSheets.zip through various donation platforms
+description: Support the development of Cheatly through various donation platforms
 permalink: /support/
 background: bg-gradient-to-r from-pink-500 to-purple-600
 tags:
@@ -9,14 +9,14 @@ tags:
 categories:
   - Other
 intro: |
-  Thank you for considering supporting CheatSheets.zip! Your contributions help us maintain and improve this free resource for developers worldwide.
+  Thank you for considering supporting Cheatly! Your contributions help us maintain and improve this free resource for developers worldwide.
 ---
 
 ## Buy Me a Coffee
 
 ### 💖 Why Support Us?
 
-CheatSheets.zip serves **1M+ developers** monthly with **200+ free cheat sheets**.
+Cheatly serves **1M+ developers** monthly with **200+ free cheat sheets**.
 
 We believe great developer resources should be **free forever**. Your support helps us:
 
@@ -39,7 +39,7 @@ Buy us a coffee and help keep the cheat sheets coming. Perfect for one-time supp
 - Motivation to create new content
 - A smile on our faces
 
-[Buy Me a Coffee](https://buymeacoffee.com/cheatsheets.zip) {.link-arrow}
+[Buy Me a Coffee](https://buymeacoffee.com/Nathishwar) {.link-arrow}
 
 ### 🌟 GitHub Sponsors
 
@@ -53,4 +53,4 @@ Support the future of free developer resources. Every contribution, big or small
 - Early access to new features
 - Good karma for supporting open source
 
-[Sponsor on GitHub](https://github.com/sponsors/Fechin) {.link-arrow}
+[Sponsor on GitHub](https://github.com/sponsors/Nathishwar-prog) {.link-arrow}

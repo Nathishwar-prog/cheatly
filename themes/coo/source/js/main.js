@@ -59,182 +59,95 @@ const Utils = (function () {
 })();
 
 // Simple Timeline TOC - Direct Implementation
+// Floating Premium TOC
 (function () {
-  function initTOC() {
-    const tocContainer = document.getElementById('toc-container');
+  function initFloatingTOC() {
+    const tocFloating = document.getElementById('toc-floating');
     const tocList = document.getElementById('toc-list');
+    const progressBar = document.getElementById('toc-progress-bar');
+    const percentageText = document.getElementById('toc-percentage');
 
-    if (!tocContainer || !tocList) return;
+    if (!tocFloating || !tocList) return;
 
-    const headings = document.querySelectorAll('.h2-wrap h2');
-
+    const headings = document.querySelectorAll('.mdLayout h2');
     if (headings.length === 0) {
-      tocContainer.style.display = 'none';
+      tocFloating.classList.add('hidden');
       return;
     }
 
-    // Generate TOC
+    // Show floating TOC
+    tocFloating.classList.remove('hidden');
+
+    // Generate TOC Items
     tocList.innerHTML = '';
     headings.forEach((heading, index) => {
-      let text = heading.textContent.trim().replace(/^#+\s*/, '');
       const id = heading.id || `heading-${index}`;
+      if (!heading.id) heading.id = id;
 
-      if (!heading.id) {
-        heading.id = id;
-      }
+      const link = document.createElement('a');
+      link.href = `#${id}`;
+      link.className =
+        'toc-link group flex items-center py-1 transition-all duration-300 hover:pl-2';
+      link.innerHTML = `
+        <span class="w-1 h-1 rounded-full bg-zinc-400 group-hover:bg-indigo-500 mr-3 transition-colors"></span>
+        <span class="text-zinc-600 dark:text-zinc-400 group-hover:text-indigo-500 truncate">${heading.textContent.trim()}</span>
+      `;
 
-      const tocItem = document.createElement('a');
-      tocItem.href = `#${id}`;
-      tocItem.className = 'toc-link';
-      tocItem.setAttribute('data-tooltip', text);
-
-      tocItem.addEventListener('click', (e) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetElement = document.getElementById(id);
-        if (targetElement) {
-          const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          const viewportHeight = window.innerHeight;
-          const centerOffset = viewportHeight / 2;
-          const scrollToPosition = elementTop - centerOffset;
-
+        const target = document.getElementById(id);
+        if (target) {
           window.scrollTo({
-            top: Math.max(0, scrollToPosition),
+            top: target.offsetTop - 100,
             behavior: 'smooth'
           });
-
           window.location.hash = id;
         }
       });
-
-      tocList.appendChild(tocItem);
+      tocList.appendChild(link);
     });
 
-    // Update active heading and progress
-    function updateActiveHeading() {
-      const tocLinks = document.querySelectorAll('.toc-link');
-      let activeIndex = -1;
-      const scrollTop = window.pageYOffset + 100;
+    // Update Progress Ring & Active Links
+    function updateProgress() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.min(Math.round((scrollTop / docHeight) * 100), 100);
 
-      for (let i = headings.length - 1; i >= 0; i--) {
-        if (headings[i].offsetTop <= scrollTop) {
-          activeIndex = i;
-          break;
-        }
+      // Rotate Progress Circle
+      if (progressBar) {
+        const circum = 251.2; // 2 * PI * 40
+        const offset = circum - (scrollPercent / 100) * circum;
+        progressBar.style.strokeDashoffset = offset;
       }
+      if (percentageText) percentageText.textContent = `${scrollPercent}%`;
 
-      tocLinks.forEach((link, index) => {
-        link.classList.remove('active');
-        if (index <= activeIndex) {
-          link.classList.add('read');
-        } else {
-          link.classList.remove('read');
-        }
-      });
-
-      if (activeIndex >= 0 && tocLinks[activeIndex]) {
-        tocLinks[activeIndex].classList.add('active');
-      }
-
-      // Update progress
-      let progressPercent = 0;
-      if (activeIndex >= 0) {
-        progressPercent = ((activeIndex + 1) / headings.length) * 100;
-      }
-
-      const scrollPercent =
-        (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      const finalProgress = Math.max(progressPercent, scrollPercent || 0);
-
-      tocList.style.setProperty('--progress-height', `${Math.min(finalProgress, 100)}%`);
-    }
-
-    // Swipe/drag functionality for mobile
-    let isDragging = false;
-
-    function handleTouchStart() {
-      isDragging = true;
-      tocContainer.style.transition = 'none';
-    }
-
-    function handleTouchMove(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-
-      const currentY = e.touches[0].clientY;
-      const containerRect = tocContainer.getBoundingClientRect();
-      const containerHeight = containerRect.height;
-
-      // Calculate which heading should be active based on touch position
-      const relativeY = (currentY - containerRect.top) / containerHeight;
-      const targetIndex = Math.floor(relativeY * headings.length);
-      const clampedIndex = Math.max(0, Math.min(targetIndex, headings.length - 1));
-
-      // Update visual feedback
-      const tocLinks = document.querySelectorAll('.toc-link');
-      tocLinks.forEach((link, index) => {
-        link.classList.remove('active');
-        if (index <= clampedIndex) {
-          link.classList.add('read');
-        } else {
-          link.classList.remove('read');
+      // Highlight Active Heading
+      let currentActiveIndex = -1;
+      headings.forEach((heading, index) => {
+        if (scrollTop >= heading.offsetTop - 150) {
+          currentActiveIndex = index;
         }
       });
 
-      if (tocLinks[clampedIndex]) {
-        tocLinks[clampedIndex].classList.add('active');
-      }
+      const links = tocList.querySelectorAll('.toc-link');
+      links.forEach((link, index) => {
+        const dot = link.querySelector('span:first-child');
+        const text = link.querySelector('span:last-child');
+        if (index === currentActiveIndex) {
+          dot.classList.add('bg-indigo-500', 'scale-150');
+          text.classList.add('text-indigo-500', 'font-semibold');
+        } else {
+          dot.classList.remove('bg-indigo-500', 'scale-150');
+          text.classList.remove('text-indigo-500', 'font-semibold');
+        }
+      });
     }
 
-    function handleTouchEnd(e) {
-      if (!isDragging) return;
-      isDragging = false;
-      tocContainer.style.transition = '';
-
-      const currentY = e.changedTouches[0].clientY;
-      const containerRect = tocContainer.getBoundingClientRect();
-      const containerHeight = containerRect.height;
-
-      // Calculate target heading
-      const relativeY = (currentY - containerRect.top) / containerHeight;
-      const targetIndex = Math.floor(relativeY * headings.length);
-      const clampedIndex = Math.max(0, Math.min(targetIndex, headings.length - 1));
-
-      // Navigate to the target heading
-      if (headings[clampedIndex]) {
-        const targetHeading = headings[clampedIndex];
-        const elementTop = targetHeading.getBoundingClientRect().top + window.pageYOffset;
-        const viewportHeight = window.innerHeight;
-        const centerOffset = viewportHeight / 2;
-        const scrollToPosition = elementTop - centerOffset;
-
-        window.scrollTo({
-          top: Math.max(0, scrollToPosition),
-          behavior: 'smooth'
-        });
-
-        window.location.hash = targetHeading.id;
-      }
-    }
-
-    // Add touch event listeners
-    tocContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
-    tocContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-    tocContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
-
-    // Event listeners
-    window.addEventListener('scroll', updateActiveHeading, { passive: true });
-    window.addEventListener('hashchange', updateActiveHeading);
-
-    // Initial update
-    updateActiveHeading();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
   }
 
-  // Run immediately if DOM is ready, otherwise wait
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTOC);
-  } else {
-    initTOC();
-  }
+  window.initFloatingTOC = initFloatingTOC;
 })();
 
 // Share Dropdown Functionality with Portal Positioning
@@ -459,7 +372,7 @@ async function fetchGitHubStars() {
     }
 
     // Fetch from GitHub API
-    const response = await fetch('https://api.github.com/repos/Fechin/reference');
+    const response = await fetch('https://api.github.com/repos/Nathishwar-prog/cheatly');
     if (!response.ok) throw new Error('Failed to fetch');
 
     const data = await response.json();
@@ -495,10 +408,17 @@ function formatStarCount(count) {
   }
   return count.toString();
 }
-
 window.addEventListener('load', () => {
   // Initialize share dropdown
   initShareDropdown();
+
+  // Initialize Quick View
+  initQuickView();
+
+  // Initialize Floating TOC
+  if (typeof window.initFloatingTOC === 'function') {
+    window.initFloatingTOC();
+  }
 
   // Fetch GitHub stars
   fetchGitHubStars();
@@ -933,3 +853,105 @@ window.addEventListener('load', () => {
       console.error('Failed to load search library:', error);
     });
 });
+
+// Quick View Functionality
+function initQuickView() {
+  const modal = document.getElementById('quickview-modal');
+  const backdrop = document.getElementById('quickview-backdrop');
+  const content = document.getElementById('quickview-content');
+  const closeBtn = document.getElementById('quickview-close');
+  const triggers = document.querySelectorAll('.quickview-trigger');
+
+  if (!modal || !triggers.length) return;
+
+  function openModal(data) {
+    const titleEl = document.getElementById('quickview-title');
+    const subtitleEl = document.getElementById('quickview-subtitle');
+    const linkEl = document.getElementById('quickview-full-link');
+
+    if (titleEl) titleEl.textContent = data.title;
+    if (subtitleEl) subtitleEl.textContent = `${data.slug} reference`;
+    if (linkEl) linkEl.href = data.url;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Animate in
+    setTimeout(() => {
+      backdrop.classList.replace('opacity-0', 'opacity-100');
+      content.classList.replace('translate-y-10', 'translate-y-0');
+      content.classList.replace('opacity-0', 'opacity-100');
+      content.classList.replace('scale-95', 'scale-100');
+    }, 10);
+
+    document.body.classList.add('overflow-hidden');
+
+    // Fetch Content
+    fetchContent(data.url);
+  }
+
+  function closeModal() {
+    backdrop.classList.replace('opacity-100', 'opacity-0');
+    content.classList.replace('translate-y-0', 'translate-y-10');
+    content.classList.replace('opacity-100', 'opacity-0');
+    content.classList.replace('scale-100', 'scale-95');
+
+    setTimeout(() => {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      // Reset content
+      document.getElementById('quickview-loader').classList.remove('hidden');
+      document.getElementById('quickview-content-target').classList.add('hidden');
+      document.getElementById('quickview-content-target').innerHTML = '';
+    }, 500);
+  }
+
+  async function fetchContent(url) {
+    try {
+      const response = await fetch(url);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const targetContent = doc.querySelector('.mdLayout');
+
+      if (targetContent) {
+        const target = document.getElementById('quickview-content-target');
+        target.innerHTML = targetContent.innerHTML;
+
+        // Hide loader, show content
+        document.getElementById('quickview-loader').classList.add('hidden');
+        target.classList.remove('hidden');
+      } else {
+        throw new Error('Content not found');
+      }
+    } catch (error) {
+      document.getElementById('quickview-body').innerHTML = `
+        <div class="flex flex-col items-center justify-center h-full text-zinc-500">
+          <p>Failed to load preview. Please view the full sheet.</p>
+        </div>
+      `;
+    }
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal({
+        url: trigger.dataset.url,
+        title: trigger.dataset.title,
+        slug: trigger.dataset.slug
+      });
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+}

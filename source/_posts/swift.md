@@ -1052,11 +1052,11 @@ func washCar() -> Void {
 
 ```swift
 func greetLearner() {
- print("Welcome to CheatSheets.zip!")
+ print("Welcome to Cheatly!")
 }
 // function call:
 greetLearner()
-// print: Welcome to CheatSheets.zip!
+// print: Welcome to Cheatly!
 ```
 
 ### return value

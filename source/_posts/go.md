@@ -571,11 +571,11 @@ fmt.Println(b)    // => 7
 
 ```go
 r1, r2 := func() (string, string) {
-    x := []string{"hello", "cheatsheets.zip"}
+    x := []string{"hello", "Cheatly"}
     return x[0], x[1]
 }()
 
-// => hello cheatsheets.zip
+// => hello Cheatly
 fmt.Println(r1, r2)
 ```
 

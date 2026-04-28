@@ -1,11 +1,17 @@
 <!DOCTYPE HTML>
 <html class="<%= is_post() ? 'scrollbar' : '' %>" lang="<%= config.language || 'en' %>" translate="no">
 <%- partial('_partial/head') %>
-<body class="bg-slate-100 dark:bg-slate-900">
+<body class="bg-zinc-50 dark:bg-[#020617]">
+<div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+</div>
 <%- partial('_partial/header') %>
 <%- body %>
 <%- partial('_partial/toc') %>
 <%- partial('_partial/search') %>
+<%- partial('_partial/quickview') %>
 <%- partial('_partial/footer') %>
 </body>
 <%- partial('_partial/scripts') %>

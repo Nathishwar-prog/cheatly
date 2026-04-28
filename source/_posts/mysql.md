@@ -915,4 +915,4 @@ DROP INDEX idx_name ON t;
 
 ## Also see {.cols-1}
 
-- [Regex in MySQL](/regex#regex-in-mysql) _(cheatsheets.zip)_
+- [Regex in MySQL](/regex#regex-in-mysql) _(Cheatly)_

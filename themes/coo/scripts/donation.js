@@ -2,19 +2,19 @@
 
 const donationConfig = {
   github: {
-    url: 'https://github.com/sponsors/Fechin',
+    url: 'https://github.com/sponsors/Nathishwar-prog',
     enabled: true
   },
   buymeacoffee: {
-    url: 'https://buymeacoffee.com/fechin',
+    url: 'https://buymeacoffee.com/Nathishwar',
     enabled: true
   },
   kofi: {
-    url: 'https://ko-fi.com/fechin',
+    url: 'https://ko-fi.com/Nathishwar',
     enabled: true
   },
   paypal: {
-    url: 'https://paypal.me/fechinli',
+    url: 'https://paypal.me/Nathishwar',
     enabled: true
   }
 };

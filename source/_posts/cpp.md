@@ -492,7 +492,7 @@ for (int n : {1, 2, 3, 4, 5}) {
 ---
 
 ```cpp
-std::string hello = "CheatSheets.zip";
+std::string hello = "Cheatly";
 for (char c: hello)
 {
     std::cout << c << " ";

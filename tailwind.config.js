@@ -1,16 +1,33 @@
 module.exports = {
-  darkMode: 'class', // or 'media' or 'class'
-  plugins: [
-    // https://github.com/jamiebuilds/tailwindcss-animate
-    require('tailwindcss-animate')
-  ],
+  darkMode: 'class',
+  plugins: [require('tailwindcss-animate')],
   theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Outfit', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+      },
+      colors: {
+        premium: {
+          light: '#f8fafc',
+          dark: '#020617',
+          accent: '#6366f1',
+          glass: 'rgba(255, 255, 255, 0.05)',
+          'glass-border': 'rgba(255, 255, 255, 0.1)'
+        }
+      },
+      boxShadow: {
+        'glass-light': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+      },
+      backdropBlur: {
+        xs: '2px'
+      }
+    },
     boxShadow: {
-      /* Customized */
       DEFAULT: '0 6px 8px rgba(102, 119, 136, 0.03), 0 1px 2px rgba(102, 119, 136, 0.3)',
       md: '0 4px 6px -1px rgba(102, 119, 136, 0.05), 0 2px 4px -1px rgba(102, 119, 136, 0.35)',
-
-      /* Default */
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
       lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
@@ -25,7 +42,7 @@ module.exports = {
       'source/**/*.md',
       'themes/coo/layout/**/*.ejs',
       'source/widget/*.html',
-      'themes/coo/source/js/main.js'
+      'themes/coo/source/js/**/*.js'
     ]
   }
 };

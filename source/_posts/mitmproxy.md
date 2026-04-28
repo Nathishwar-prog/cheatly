@@ -178,7 +178,7 @@ Export a flow to the system clipboard.
 
 ---
 
-- [RegEX cheatsheet](/regex) _(cheatsheets.zip)_
+- [RegEX cheatsheet](/regex) _(Cheatly)_
 
 The regex are Python-style, it can be specified as quoted strings
 

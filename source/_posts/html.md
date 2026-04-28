@@ -27,7 +27,7 @@ plugins:
     <title>HTML5 Boilerplate</title>
   </head>
   <body>
-    <h1>Hello world, hello CheatSheets.zip!</h1>
+    <h1>Hello world, hello Cheatly!</h1>
   </body>
 </html>
 ```
@@ -48,7 +48,7 @@ Or try it out in the [jsfiddle](https://jsfiddle.net/Fechin/1e4wz20b/)
 ### Paragraph
 
 ```html
-<p>I'm from CheatSheets.zip</p>
+<p>I'm from Cheatly</p>
 <p>Share quick reference cheat sheet.</p>
 ```
 
@@ -57,7 +57,7 @@ See: [The Paragraph element](https://developer.mozilla.org/en-US/docs/Web/HTML/E
 ### HTML link
 
 ```html
-<a href="https://cheatsheets.zip">CheatSheets</a>
+<a href="https://cheatly.knowgrow.tech">Cheatly</a>
 <a href="mailto:jack@abc.com">Email</a>
 <a href="tel:+12345678">Call</a>
 <a href="sms:+12345678&body=ha%20ha">Msg</a>
@@ -176,7 +176,7 @@ See: [The Inline Frame element](https://developer.mozilla.org/en-US/docs/Web/HTM
 
 ```html
 <script type="text/javascript">
-  let text = 'Hello CheatSheets.zip';
+  let text = 'Hello Cheatly';
   alert(text);
 </script>
 ```
@@ -220,10 +220,10 @@ See: [The Inline Frame element](https://developer.mozilla.org/en-US/docs/Web/HTM
     <nav>...</nav>
   </header>
   <main>
-    <h1>CheatSheets.zip</h1>
+    <h1>Cheatly</h1>
   </main>
   <footer>
-    <p>©2023 CheatSheets.zip</p>
+    <p>©2026 Cheatly</p>
   </footer>
 </body>
 ```
@@ -359,10 +359,10 @@ audio element. </audio>
 ### HTML5 mark
 
 ```html
-<p>I Love <mark>CheatSheets.zip</mark></p>
+<p>I Love <mark>Cheatly</mark></p>
 ```
 
-<p>I Love <mark>CheatSheets.zip</mark></p>
+<p>I Love <mark>Cheatly</mark></p>
 
 ## HTML Tables
 
@@ -848,7 +848,7 @@ The meta tag describes meta data within an HTML document. It explains additional
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_CA" />
 <meta property="og:title" content="HTML cheatsheet" />
-<meta property="og:url" content="https://cheatsheets.zip/html" />
+<meta property="og:url" content="https://Cheatly/html" />
 <meta property="og:image" content="https://xxx.com/image.jpg" />
 <meta property="og:site_name" content="Name of your website" />
 <meta property="og:description" content="Description of this page" />
@@ -862,7 +862,7 @@ Used by Facebook, Instagram, Pinterest, LinkedIn, etc.
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@FechinLi" />
 <meta name="twitter:title" content="HTML cheatsheet" />
-<meta name="twitter:url" content="https://cheatsheets.zip/html" />
+<meta name="twitter:url" content="https://Cheatly/html" />
 <meta name="twitter:description" content="Description of this page" />
 <meta name="twitter:image" content="https://xxx.com/image.jpg" />
 ```

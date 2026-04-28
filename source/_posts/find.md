@@ -31,7 +31,7 @@ $ find . -name "json_*"
 
 ---
 
-- [Regex reference](/regex) _(cheatsheets.zip)_
+- [Regex reference](/regex) _(Cheatly)_
 - [Find cheatsheet](https://gist.github.com/gr1ev0us/3a9b9d9dbdd38f6379288eb2686fc538) _(gist.github.com)_
 
 ### Option Examples {.col-span-2}
@@ -420,8 +420,8 @@ Find all `.java` files and compress it into `java.tar`
 $ find . -type f -name "*.java" | xargs tar cvf java.tar
 ```
 
-Find all `.csv` files and compress it into `cheatsheets.zip`
+Find all `.csv` files and compress it into `Cheatly`
 
 ```shell script
-$ find . -type f -name "*.csv" | xargs zip cheatsheets.zip
+$ find . -type f -name "*.csv" | xargs zip Cheatly
 ```

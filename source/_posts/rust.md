@@ -410,13 +410,13 @@ let mut l = k;
 
 ---
 
-| Operator             | Description                             |
-| -------------------- | --------------------------------------- |
-| `k += l`             | Add a value and assign, then k=18       |
-| `k -= l`             | Subtract a value and assign, then k=0   |
-| `k /= l`             | Divide a value and assign, then k=1     |
-| `k *= l`             | Multiply a value and assign, then k=81  |
-| <code>k \|= l</code> | Bitwise OR and assign, then k=89        |
+| Operator             | Description                            |
+| -------------------- | -------------------------------------- |
+| `k += l`             | Add a value and assign, then k=18      |
+| `k -= l`             | Subtract a value and assign, then k=0  |
+| `k /= l`             | Divide a value and assign, then k=1    |
+| `k *= l`             | Multiply a value and assign, then k=81 |
+| <code>k \|= l</code> | Bitwise OR and assign, then k=89       |
 
 ## Rust Flow Control
 
@@ -606,7 +606,7 @@ for (v, c) in (0..10 + 1).enumerate() {
 
 ```rust
 fn print_message() {
-    println!("Hello, CheatSheets.zip!");
+    println!("Hello, Cheatly!");
 }
 
 fn main() {

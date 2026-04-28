@@ -23,13 +23,13 @@ text -->
 
 This is a quick cheat sheet to getting started with regular expressions.
 
-- [Regex in Python](#regex-in-python) _(cheatsheets.zip)_
-- [Regex in JavaScript](#regex-in-javascript) _(cheatsheets.zip)_
-- [Regex in PHP](#regex-in-php) _(cheatsheets.zip)_
-- [Regex in Java](#regex-in-java) _(cheatsheets.zip)_
-- [Regex in MySQL](#regex-in-mysql) _(cheatsheets.zip)_
-- [Regex in Vim](/vim#search-and-replace) _(cheatsheets.zip)_
-- [Regex in Emacs](/emacs#search) _(cheatsheets.zip)_
+- [Regex in Python](#regex-in-python) _(Cheatly)_
+- [Regex in JavaScript](#regex-in-javascript) _(Cheatly)_
+- [Regex in PHP](#regex-in-php) _(Cheatly)_
+- [Regex in Java](#regex-in-java) _(Cheatly)_
+- [Regex in MySQL](#regex-in-mysql) _(Cheatly)_
+- [Regex in Vim](/vim#search-and-replace) _(Cheatly)_
+- [Regex in Emacs](/emacs#search) _(Cheatly)_
 - [Online regex tester](https://regex101.com/) _(regex101.com)_
 
 {.cols-2 .marker-round}

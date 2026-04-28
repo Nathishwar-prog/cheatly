@@ -1,6 +1,18 @@
-<a href="<%- url_for(url) %>" title="<%- title %> Cheatsheet">
-    <div class="card <%- background %>" <% if (label) { %> data-label="<%- label %>" <% }%> >
-        <%- icon(slug) %>
-        <p><%- title %></p>
+<div class="card-wrap relative group scale-in">
+    <a href="<%- url_for(url) %>" title="<%- title %> Cheatsheet" class="block h-full">
+        <div class="card <%- background %> h-full" <% if (label) { %> data-label="<%- label %>" <% }%> >
+            <%- icon(slug) %>
+            <p><%- title %></p>
+        </div>
+    </a>
+    <div class="absolute top-3 right-3 flex gap-2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-10">
+        <button class="quickview-trigger p-2 rounded-full glass-panel hover:scale-110 active:scale-95 shadow-lg" 
+                data-url="<%- url_for(url) %>" data-title="<%- title %>" data-slug="<%- slug %>" title="Quick View">
+            <span class="text-zinc-600 dark:text-zinc-300 w-4 h-4 block"><%- icon('eye') %></span>
+        </button>
+        <button class="bookmark-trigger p-2 rounded-full glass-panel hover:scale-110 active:scale-95 shadow-lg" 
+                data-bookmark-id="<%- slug %>" data-title="<%- title %>" data-url="<%- url_for(url) %>" data-slug="<%- slug %>" title="Bookmark">
+            <span class="bookmark-icon text-zinc-600 dark:text-zinc-300 w-4 h-4 block"><%- icon('star') %></span>
+        </button>
     </div>
-</a>
+</div>

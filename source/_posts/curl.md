@@ -121,15 +121,15 @@ apk add --update curl # install in alpine linux
 
 ### CURL GET/HEAD {.col-span-4 .row-span-2}
 
-| command                                                               | description                         |
-| :-------------------------------------------------------------------- | :---------------------------------- |
-| `curl -I https://cheatsheets.zip`                                     | `curl` sends a request              |
-| `curl -v -I https://cheatsheets.zip`                                  | `curl` request with details         |
-| `curl -X GET https://cheatsheets.zip`                                 | use explicit http method for `curl` |
-| `curl --noproxy 127.0.0.1 http://www.stackoverflow.com`               | `curl` without http proxy           |
-| `curl --connect-timeout 10 -I -k https://cheatsheets.zip`             | `curl` has no timeout by default    |
-| `curl --verbose --header "Host: www.mytest.com:8182" cheatsheets.zip` | `curl` get extra header             |
-| `curl -k -v https://www.google.com`                                   | `curl` get response with headers    |
+| command                                                       | description                         |
+| :------------------------------------------------------------ | :---------------------------------- |
+| `curl -I https://Cheatly`                                     | `curl` sends a request              |
+| `curl -v -I https://Cheatly`                                  | `curl` request with details         |
+| `curl -X GET https://Cheatly`                                 | use explicit http method for `curl` |
+| `curl --noproxy 127.0.0.1 http://www.stackoverflow.com`       | `curl` without http proxy           |
+| `curl --connect-timeout 10 -I -k https://Cheatly`             | `curl` has no timeout by default    |
+| `curl --verbose --header "Host: www.mytest.com:8182" Cheatly` | `curl` get extra header             |
+| `curl -k -v https://www.google.com`                           | `curl` get response with headers    |
 
 ### Multiple file upload {.col-span-2}
 

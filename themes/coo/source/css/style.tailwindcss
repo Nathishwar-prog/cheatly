@@ -1,306 +1,78 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-/* Custom Components */
-@import "components/layer.css";
-@import "highlightjs/stackoverflow-light.min.css";
-@import "components/layout_table.css";
-@import "components/layout_list.css";
-@import "components/layout_note.css";
-@import "components/custom_tag.css";
-@import "components/code.css";
-@import "components/search.css";
-@import "components/toc.css";
-@import "components/pagination.css";
-@import "components/navbar.css";
-@import "components/social-buttons.css";
-@import "components/common.css";
-
 /* =========================================
-   PREMIUM MONOCHROME GLASSMORPHISM DESIGN
-   Pure Black/White/Gray Palette
+   VIBRANT MESH GRADIENT & PREMIUM GLASS
    ========================================= */
 
-/* Liquid Morph Animations */
-@keyframes liquid-morph {
-    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0deg) scale(1); }
-    25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: rotate(90deg) scale(1.05); }
-    50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; transform: rotate(180deg) scale(0.95); }
-    75% { border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%; transform: rotate(270deg) scale(1.02); }
+@keyframes mesh-pulse {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    33% { transform: scale(1.2) translate(10%, 5%); }
+    66% { transform: scale(0.8) translate(-5%, 10%); }
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+.mesh-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    @apply bg-zinc-50 dark:bg-[#020617];
 }
 
-@keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+.mesh-blob {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    filter: blur(80px);
+    opacity: 0.2;
+    animation: mesh-pulse 20s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+    @apply dark:opacity-[0.15];
 }
 
-@keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
-    50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.2); }
+.blob-1 {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+}
+
+.blob-2 {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    @apply bg-white/60 backdrop-blur-xl border border-white/20 shadow-glass-light;
+    @apply dark:bg-zinc-900/40 dark:border-white/5 dark:shadow-glass-dark;
+}
+
+.glass-card {
+    @apply bg-white/40 backdrop-blur-lg border border-white/30 rounded-2xl transition-all duration-300;
+    @apply dark:bg-white/[0.03] dark:border-white/[0.05];
+    @apply hover:bg-white/60 dark:hover:bg-white/[0.06] hover:scale-[1.02] hover:shadow-2xl;
 }
 
 html {
     -webkit-tap-highlight-color: transparent;
     font-family: 'Outfit', sans-serif;
-}
-
-html.scrollbar {
     scroll-behavior: smooth;
-    scroll-padding-top: 20px;
-}
-
-:root.dark {
-    color-scheme: dark;
 }
 
 body {
-    @apply bg-zinc-50 text-zinc-900 transition-colors duration-300;
-    @apply dark:bg-black dark:text-zinc-100;
+    @apply text-zinc-900 dark:text-zinc-100;
 }
 
-/* Container */
-.max-container {
-    max-width: 1320px;
-    @apply mx-auto p-4 lg:p-6;
+/* Updated Typography */
+h1, h2, h3, .font-display {
+    font-family: 'Space Grotesk', 'Outfit', sans-serif;
 }
 
-@media (max-width: 768px) {
-    .max-container {
-        @apply px-4;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-}
-
-/* Premium Glass Buttons */
-.header-button {
-    @apply inline-flex items-center justify-center rounded-full transition-all duration-300;
-    @apply bg-white/80 text-zinc-700 shadow-lg backdrop-blur-md border border-white/20;
-    @apply dark:bg-white/5 dark:text-zinc-200 dark:border-white/10;
-    @apply hover:scale-105 hover:bg-white hover:shadow-xl;
-    @apply dark:hover:bg-white/10 dark:hover:border-white/20;
-    @apply p-2 lg:px-5 lg:py-2 focus:outline-none focus:ring-2 focus:ring-white/30;
-}
-
-.header-button > i {
-    @apply text-xl leading-5 lg:text-base lg:mr-2;
-}
-
-/* =========================================
-   HOME PAGE CARDS - FROSTED GLASS
-   ========================================= */
-
-.home .card {
-    @apply relative p-5 flex items-center rounded-2xl cursor-pointer transition-all duration-500;
-    /* Light Mode - Frosted Glass */
-    @apply bg-white/60 border border-zinc-200/50 shadow-xl backdrop-blur-xl text-zinc-800;
-    /* Dark Mode - Deep Glass */
-    @apply dark:bg-white/5 dark:border-white/10 dark:shadow-2xl dark:text-zinc-100;
-    
-    /* Hover Effects - Liquid Lift */
-    @apply hover:-translate-y-2 hover:shadow-2xl hover:bg-white/80;
-    @apply dark:hover:bg-white/10 dark:hover:border-white/20;
-    animation: float 6s ease-in-out infinite;
-}
-
-.home .card[data-label]::before {
-    content: attr(data-label);
-    @apply absolute right-3 top-3 text-[10px] font-bold uppercase tracking-wider;
-    @apply bg-zinc-900/80 text-white px-2 py-1 rounded-full;
-    @apply dark:bg-white/20 dark:text-zinc-100;
-}
-
-.home .card > svg {
-    @apply text-4xl mr-4 text-zinc-600 transition-all duration-300;
-    @apply dark:text-zinc-300;
-}
-
-.home .card:hover > svg {
-    @apply text-zinc-900 dark:text-white scale-110;
-    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
-}
-
-.home .card > p {
-    @apply text-base font-medium ml-2 truncate max-w-[75%] font-['Space_Grotesk'];
-}
-
-.home .domain {
-    @apply text-zinc-400 dark:text-zinc-600 text-xs mt-1 block;
-}
-
-/* =========================================
-   MARKDOWN CONTENT LAYOUT
-   ========================================= */
-
-.mdLayout {
-    @apply flex flex-col space-y-12 pb-20 text-zinc-700 dark:text-zinc-300;
-}
-
-.mdLayout .h2-wrap {
-    @apply rounded-xl transition-colors duration-300;
-}
-
-/* Section Headings (H2) - Monochrome Gradient */
-.mdLayout h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    @apply text-3xl font-bold tracking-tight mb-8 mt-12 relative inline-block;
-    @apply bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-500 bg-clip-text text-transparent;
-    @apply dark:from-white dark:via-zinc-300 dark:to-zinc-500;
-}
-
-.mdLayout h2::after {
-    content: '';
-    @apply absolute -bottom-2 left-0 w-12 h-1 rounded-full bg-zinc-800 dark:bg-white;
-}
-
-.mdLayout .h2-wrap > h2 > a.h-anchor {
-    @apply hidden;
-}
-
-/** Grid layout Configuration **/
-.mdLayout .h2-wrap > .h3-wrap-list { @apply flex flex-col lg:grid lg:grid-cols-3 lg:gap-6; }
-.mdLayout .h2-wrap.cols-1 > .h3-wrap-list { @apply lg:grid-cols-1; }
-.mdLayout .h2-wrap.cols-2 > .h3-wrap-list { @apply lg:grid-cols-2; }
-.mdLayout .h2-wrap.cols-3 > .h3-wrap-list { @apply lg:grid-cols-3; }
-.mdLayout .h2-wrap.cols-4 > .h3-wrap-list { @apply lg:grid-cols-4; }
-.mdLayout .h2-wrap.cols-5 > .h3-wrap-list { @apply lg:grid-cols-5; }
-.mdLayout .h2-wrap.cols-6 > .h3-wrap-list { @apply lg:grid-cols-6; }
-
-/** H3 CARD WRAPPER - Premium Glass Panels **/
-.mdLayout .h3-wrap {
-    @apply relative overflow-hidden flex flex-col rounded-2xl border transition-all duration-500;
-    /* Light Mode - Frosted Glass */
-    @apply bg-white/70 border-zinc-200/60 shadow-xl backdrop-blur-2xl;
-    /* Dark Mode - Deep Glass */
-    @apply dark:bg-white/5 dark:backdrop-blur-2xl dark:border-white/10 dark:shadow-2xl;
-    
-    @apply hover:shadow-2xl hover:border-zinc-300 dark:hover:border-white/20 hover:-translate-y-1;
-}
-
-/* Card Header (H3) - Monochrome Badge */
-.mdLayout .h3-wrap > h3 {
-    @apply absolute right-0 top-0 z-10 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-white rounded-bl-xl shadow-md;
-    @apply bg-gradient-to-r from-zinc-800 to-zinc-600;
-    @apply dark:from-zinc-100 dark:to-zinc-400 dark:text-zinc-900;
-    font-family: 'Space Grotesk', sans-serif;
-}
-
-/* Different states - All Monochrome */
-.mdLayout .h3-wrap.primary > h3 { 
-    @apply from-zinc-900 to-zinc-700 dark:from-white dark:to-zinc-300; 
-}
-.mdLayout .h3-wrap.secondary > h3 { 
-    @apply from-zinc-700 to-zinc-500 dark:from-zinc-200 dark:to-zinc-400; 
-}
-
-/* Boxed variations */
-.mdLayout .h2-wrap.boxed, .mdLayout .h3-wrap.boxed {
-    @apply ring-2 ring-zinc-400 dark:ring-white/20;
-}
-
-/* Card Content Section */
-.mdLayout .h3-wrap > .section {
-    @apply flex flex-col h-full w-full z-0;
-}
-
-/* Content Lists/Paragraphs */
-.mdLayout .h3-wrap > .section > p {
-    @apply w-full px-5 py-3 m-0 text-sm leading-relaxed border-b border-dashed border-zinc-200/50 last:border-0;
-    @apply bg-transparent text-zinc-600;
-    @apply dark:text-zinc-400 dark:border-zinc-800;
-}
-
-.mdLayout .h3-wrap > .section > p:nth-child(odd) {
-    @apply bg-zinc-50/50 dark:bg-white/[0.02];
-}
-
-.mdLayout .h3-wrap > .section > p:first-child:before {
-    content: '';
-    display: none;
-}
-
-/* Intermediate Headers inside cards (h4) */
-.mdLayout .h3-wrap > .section > h4 {
-    @apply bg-zinc-100/80 text-zinc-600 text-xs font-bold uppercase tracking-wider py-2 text-center border-y border-zinc-200;
-    @apply dark:bg-zinc-900/50 dark:text-zinc-400 dark:border-zinc-800;
-    font-family: 'Space Grotesk', sans-serif;
-}
-
-/* Links inside cards - Monochrome */
-.mdLayout .h3-wrap > .section p a,
-.intro p a {
-    @apply text-zinc-800 font-medium underline decoration-zinc-400 decoration-2 underline-offset-2 transition-all;
-    @apply dark:text-zinc-200 dark:decoration-zinc-600;
-    @apply hover:text-black hover:decoration-black dark:hover:text-white dark:hover:decoration-white;
-}
-
-/* Code Snippets/Emphasis */
-.mdLayout em, .mdLayout sup, .mdLayout sub {
-    @apply text-zinc-700 font-mono text-xs bg-zinc-100 px-1 py-0.5 rounded mx-1;
-    @apply dark:bg-zinc-800 dark:text-zinc-300;
-    font-style: normal;
-}
-
-/* Code blocks */
-pre {
-    @apply rounded-xl border border-zinc-200 bg-zinc-50 !important;
-    @apply dark:border-zinc-800 dark:bg-zinc-950 !important;
-}
-
-code {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-}
-
-/* Dark mode toggle icons */
-.icon-light { display: block; }
-.dark .icon-light { display: none; }
-.icon-dark { display: none; }
-.dark .icon-dark { display: block; }
-
-/* Global Anchor/Link Styling */
-a {
-    @apply transition-all duration-200;
-}
-
-/* Liquid Background Blobs (for hero section) */
-.liquid-blob {
-    position: absolute;
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    animation: liquid-morph 20s ease-in-out infinite;
-    opacity: 0.15;
-    filter: blur(60px);
-}
-
-.liquid-blob-1 {
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(200, 200, 200, 0.2));
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.liquid-blob-2 {
-    width: 500px;
-    height: 500px;
-    background: linear-gradient(135deg, rgba(150, 150, 150, 0.2), rgba(100, 100, 100, 0.1));
-    bottom: 10%;
-    right: 10%;
-    animation-delay: 7s;
-}
-
-.liquid-blob-3 {
-    width: 350px;
-    height: 350px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(180, 180, 180, 0.15));
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-delay: 14s;
-}

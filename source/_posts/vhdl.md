@@ -94,15 +94,15 @@ Common library declarations
 
 ### Standard Logic Types {.row-span-2}
 
-| Type | Description | Values |
-|------|-------------|---------|
-| `bit` | Binary bit | '0', '1' |
-| `std_logic` | IEEE standard | '0', '1', 'Z', 'X', 'H', 'L', 'W', 'U', '-' |
-| `boolean` | Boolean type | true, false |
-| `integer` | Integer type | -2^31 to 2^31-1 |
-| `real` | Real number | Floating point |
-| `character` | Single character | ASCII characters |
-| `string` | Character array | "Hello World" |
+| Type        | Description      | Values                                      |
+| ----------- | ---------------- | ------------------------------------------- |
+| `bit`       | Binary bit       | '0', '1'                                    |
+| `std_logic` | IEEE standard    | '0', '1', 'Z', 'X', 'H', 'L', 'W', 'U', '-' |
+| `boolean`   | Boolean type     | true, false                                 |
+| `integer`   | Integer type     | -2^31 to 2^31-1                             |
+| `real`      | Real number      | Floating point                              |
+| `character` | Single character | ASCII characters                            |
+| `string`    | Character array  | "Hello World"                               |
 
 ### Vector Types
 
@@ -199,7 +199,7 @@ begin
       end if;
     end if;
   end process;
-  
+
   count <= std_logic_vector(count_int);
 end behavioral;
 ```
@@ -214,7 +214,7 @@ architecture structural of adder_4bit is
       sum, cout : out std_logic
     );
   end component;
-  
+
   signal carry : std_logic_vector(3 downto 0);
 begin
   -- Component instantiation
@@ -235,11 +235,11 @@ begin
             input1 when sel = "01" else
             input2 when sel = "10" else
             input3;
-            
+
   -- Conditional assignment
   with sel select
     output <= input0 when "00",
-              input1 when "01", 
+              input1 when "01",
               input2 when "10",
               input3 when others;
 end dataflow;
@@ -302,17 +302,17 @@ begin
   -- Initialize
   reset <= '1';
   wait for 10 ns;
-  
+
   reset <= '0';
   wait for 20 ns;
-  
+
   -- Apply stimulus
   data_in <= x"AA";
   wait until rising_edge(clk);
-  
+
   -- Wait for condition
   wait until ready = '1';
-  
+
   wait;  -- Wait indefinitely
 end process;
 ```
@@ -523,13 +523,13 @@ package my_package is
   -- Constants
   constant DATA_WIDTH : integer := 8;
   constant ADDR_WIDTH : integer := 16;
-  
+
   -- Types
   type state_type is (IDLE, READ, WRITE, DONE);
-  
+
   -- Functions
   function parity(data : std_logic_vector) return std_logic;
-  
+
   -- Procedures
   procedure reset_signals(signal clk : in std_logic);
 end package;
@@ -569,13 +569,13 @@ architecture behavioral of tb_counter is
       count   : out std_logic_vector(7 downto 0)
     );
   end component;
-  
+
   -- Testbench signals
   signal clk     : std_logic := '0';
   signal reset   : std_logic := '1';
   signal enable  : std_logic := '0';
   signal count   : std_logic_vector(7 downto 0);
-  
+
   -- Clock period
   constant clk_period : time := 10 ns;
 
@@ -588,7 +588,7 @@ begin
       enable => enable,
       count  => count
     );
-  
+
   -- Clock generation
   clk_proc: process
   begin
@@ -597,7 +597,7 @@ begin
     clk <= '1';
     wait for clk_period/2;
   end process;
-  
+
   -- Stimulus process
   stim_proc: process
   begin
@@ -605,15 +605,15 @@ begin
     reset <= '1';
     wait for 20 ns;
     reset <= '0';
-    
+
     -- Enable counting
     enable <= '1';
     wait for 100 ns;
-    
+
     -- Disable counting
     enable <= '0';
     wait for 50 ns;
-    
+
     -- End simulation
     wait;
   end process;
@@ -628,10 +628,10 @@ process(clk)
 begin
   if rising_edge(clk) then
     -- Check counter overflow
-    assert count /= "11111111" 
-      report "Counter overflow detected!" 
+    assert count /= "11111111"
+      report "Counter overflow detected!"
       severity warning;
-    
+
     -- Check reset functionality
     if reset = '1' then
       assert count = "00000000"
@@ -658,14 +658,14 @@ begin
   while not endfile(input_file) loop
     readline(input_file, line_in);
     read(line_in, data);
-    
+
     -- Process data
     data := data * 2;
-    
+
     write(line_out, data);
     writeline(output_file, line_out);
   end loop;
-  
+
   wait;
 end process;
 ```
@@ -764,28 +764,28 @@ begin
       else
         next_state <= IDLE;
       end if;
-      
+
     when LOAD =>
       if load_done = '1' then
         next_state <= EXECUTE;
       else
         next_state <= LOAD;
       end if;
-      
+
     when EXECUTE =>
       if exec_done = '1' then
         next_state <= STORE;
       else
         next_state <= EXECUTE;
       end if;
-      
+
     when STORE =>
       if store_done = '1' then
         next_state <= DONE;
       else
         next_state <= STORE;
       end if;
-      
+
     when DONE =>
       next_state <= IDLE;
   end case;
@@ -799,7 +799,7 @@ begin
   exec_enable <= '0';
   store_enable <= '0';
   busy <= '1';
-  
+
   case current_state is
     when IDLE =>
       busy <= '0';
@@ -903,7 +903,7 @@ begin
       ff2 <= ff1;
     end if;
   end process;
-  
+
   sync_out <= ff2;
 end rtl;
 ```

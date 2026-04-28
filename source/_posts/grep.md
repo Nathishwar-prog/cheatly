@@ -42,28 +42,28 @@ Wildcards are accepted in filename.
 
 ### Option examples {.col-span-3}
 
-| Option | Example                                   | Operation                                            |
-| ------ | ----------------------------------------- | ---------------------------------------------------- |
-| `-i`   | grep -i ^DA demo.txt                      | Forgets about case sensitivity                       |
-| `-w`   | grep -w "of" demo.txt                     | Search only for the full word                        |
-| `-A`   | grep -A 3 'Exception' error.log           | Display 3 lines after matching string                |
-| `-B`   | grep -B 4 'Exception' error.log           | Display 4 lines before matching string               |
-| `-C`   | grep -C 5 'Exception' error.log           | Display 5 lines around matching string               |
-| `-r`   | grep -r 'cheatsheets.zip' /var/log/nginx/ | Recursive search _(within subdirs)_                  |
-| `-v`   | grep -v 'warning' /var/log/syslog         | Return all lines which don't match the pattern       |
-| `-e`   | grep -e '^al' filename                    | Use regex _(lines starting with 'al')_               |
-| `-E`   | grep -E 'ja(s\|cks)on' filename           | Extended regex _(lines containing jason or jackson)_ |
-| `-c`   | grep -c 'error' /var/log/syslog           | Count the number of matches                          |
-| `-l`   | grep -l 'robot' /var/log/\*               | Print the name of the file(s) of matches             |
-| `-o`   | grep -o search_string filename            | Only show the matching part of the string            |
-| `-n`   | grep -n "go" demo.txt                     | Show the line numbers of the matches                 |
+| Option | Example                           | Operation                                            |
+| ------ | --------------------------------- | ---------------------------------------------------- |
+| `-i`   | grep -i ^DA demo.txt              | Forgets about case sensitivity                       |
+| `-w`   | grep -w "of" demo.txt             | Search only for the full word                        |
+| `-A`   | grep -A 3 'Exception' error.log   | Display 3 lines after matching string                |
+| `-B`   | grep -B 4 'Exception' error.log   | Display 4 lines before matching string               |
+| `-C`   | grep -C 5 'Exception' error.log   | Display 5 lines around matching string               |
+| `-r`   | grep -r 'Cheatly' /var/log/nginx/ | Recursive search _(within subdirs)_                  |
+| `-v`   | grep -v 'warning' /var/log/syslog | Return all lines which don't match the pattern       |
+| `-e`   | grep -e '^al' filename            | Use regex _(lines starting with 'al')_               |
+| `-E`   | grep -E 'ja(s\|cks)on' filename   | Extended regex _(lines containing jason or jackson)_ |
+| `-c`   | grep -c 'error' /var/log/syslog   | Count the number of matches                          |
+| `-l`   | grep -l 'robot' /var/log/\*       | Print the name of the file(s) of matches             |
+| `-o`   | grep -o search_string filename    | Only show the matching part of the string            |
+| `-n`   | grep -n "go" demo.txt             | Show the line numbers of the matches                 |
 
 ## Grep regular expressions
 
 ### Refer
 
-- [Regex syntax](/regex) _(cheatsheets.zip)_
-- [Regex examples](/regex#regex-examples) _(cheatsheets.zip)_
+- [Regex syntax](/regex) _(Cheatly)_
+- [Regex examples](/regex#regex-examples) _(Cheatly)_
 
 Please refer to the full version of the regex cheat sheet for more complex requirements.
 

@@ -1,17 +1,35 @@
-<!-- Simple Timeline TOC -->
+<!-- Floating Premium TOC -->
 <% if (is_post()) { %>
-<div id="toc-container" class="toc-container">
-  <nav id="toc-list" class="toc-list" role="navigation" aria-label="Table of Contents">
-    <!-- TOC items will be inserted here by JavaScript -->
-  </nav>
+<div id="toc-floating" class="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-6">
+    <!-- Progress Indicator -->
+    <div class="relative w-12 h-12 flex items-center justify-center glass-panel rounded-full overflow-hidden">
+        <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
+            <circle class="text-zinc-200 dark:text-zinc-800" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50"/>
+            <circle id="toc-progress-bar" class="text-indigo-500 transition-all duration-300" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50"/>
+        </svg>
+        <span id="toc-percentage" class="absolute text-[10px] font-bold text-zinc-600 dark:text-zinc-400">0%</span>
+    </div>
+
+    <!-- TOC Menu Button & Panel -->
+    <div class="group relative">
+        <button id="toc-toggle" class="w-12 h-12 glass-panel rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+            <i class="text-zinc-600 dark:text-zinc-300"><%- icon('menu') %></i>
+        </button>
+        
+        <div id="toc-panel" class="absolute right-16 top-0 w-64 glass-panel rounded-2xl p-6 opacity-0 translate-x-10 pointer-events-none transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pointer-events-auto shadow-2xl">
+            <h3 class="text-sm font-bold tracking-widest uppercase mb-4 text-zinc-900 dark:text-white font-display">On this page</h3>
+            <nav id="toc-list" class="flex flex-col gap-3 text-xs overflow-y-auto max-h-[60vh] scrollbar-hide">
+                <!-- TOC items will be dynamically inserted here -->
+            </nav>
+        </div>
+    </div>
 </div>
 
 <script>
-// TOC functionality will be added to main.js
-window.addEventListener('DOMContentLoaded', function() {
-  if (typeof window.initTOC === 'function') {
-    window.initTOC();
-  }
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof window.initFloatingTOC === 'function') {
+        window.initFloatingTOC();
+    }
 });
 </script>
 <% } %>

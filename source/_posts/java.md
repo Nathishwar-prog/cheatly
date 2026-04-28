@@ -44,7 +44,7 @@ int num = 5;
 float floatNum = 5.99f;
 char letter = 'D';
 boolean bool = true;
-String site = "cheatsheets.zip";
+String site = "Cheatly";
 ```
 
 ### Primitive Data Types {.row-span-2}
@@ -227,8 +227,8 @@ String s = 3 + 3 + 23;        // Incompatible types
 ### Comparison
 
 ```java
-String s1 = new String("cheatsheets.zip");
-String s2 = new String("cheatsheets.zip");
+String s1 = new String("Cheatly");
+String s2 = new String("Cheatly");
 
 s1 == s2          // false
 s1.equals(s2)     // true

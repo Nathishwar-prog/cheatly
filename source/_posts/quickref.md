@@ -7,7 +7,7 @@ tags:
   - reference
 categories:
   - Other
-intro: This is the magic syntax variant manual that you can use on CheatSheets.zip, It's a good practice for contributors.
+intro: This is the magic syntax variant manual that you can use on Cheatly, It's a good practice for contributors.
 plugins:
   - copyCode
 ---
@@ -16,9 +16,9 @@ plugins:
 
 ### Develop Setup
 
-- Clone Repository [View on Github](https://github.com/Fechin/reference.git)
+- Clone Repository [View on Github](https://github.com/Nathishwar-prog/cheatly.git)
   ```shell script {.wrap}
-  $ git clone https://github.com/Fechin/reference.git
+  $ git clone https://github.com/Nathishwar-prog/cheatly.git
   ```
 - Install Dependencies in the project directory
   ```shell script
@@ -32,7 +32,7 @@ plugins:
 - Send us pull request and chill {.marker-timeline}
 
 It's a good practice to refer to the source code of the
-[CheatSheets reference](https://github.com/Fechin/reference/blob/main/source/_posts/quickref.md).
+[CheatSheets reference](https://github.com/Nathishwar-prog/cheatly/blob/main/source/_posts/quickref.md).
 
 ### Directory Structure
 
@@ -41,9 +41,9 @@ It's a good practice to refer to the source code of the
 ├── source
 │   ├── _posts   # Cheatsheet source files
 │   │   ├── awk.md
-│   │   ├── vim.md # => cheatsheets.zip/vim
+│   │   ├── vim.md # => Cheatly/vim
 │   │   ├── php.md
-│   │   ├── css.md # => cheatsheets.zip/css
+│   │   ├── css.md # => Cheatly/css
 │   │   ├── ...
 │   └── widget   # Widget files
 │       └── chmod.html
@@ -103,7 +103,7 @@ It's a good practice to refer to the source code of the
 - [Paragraph Variants](#paragraph-variants)
 - [Cards Example](#cards-example)
 
-All the magic variants supported by CheatSheets.zip
+All the magic variants supported by Cheatly
 
 ### Create source/\_posts/demo.md
 
@@ -691,7 +691,7 @@ List markers
 ### Basic code
 
 ```js
-cheatsheets.zip.is(() => {
+Cheatly.is(() => {
   awesome.site();
 });
 ```
@@ -704,7 +704,7 @@ here.is.some.more();
 
 `````markdown
 ````js
-cheatsheets.zip.is(() => {
+Cheatly.is(() => {
   awesome.site()
 })
 \```
@@ -722,7 +722,7 @@ Code blocks can be placed one after the other.
 #### index.js
 
 ```js
-cheatsheets.zip.is(() => {
+Cheatly.is(() => {
   awesome.site();
 });
 ```
@@ -739,7 +739,7 @@ here.is.some.more();
 #### index.js
 
 ```js
-cheatsheets.zip.is(() => {
+Cheatly.is(() => {
   awesome.site();
 });
 ```

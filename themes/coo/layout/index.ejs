@@ -1,5 +1,19 @@
 <section class="home max-container">
     <div class="w-full lg:w-4/5 flex flex-col mx-auto justify-center mt-10">
+        <!-- Bookmarks Section (Hidden if empty) -->
+        <div id="bookmarks-section" class="hidden mb-12">
+            <h2 class="sm:text-xl font-bold font-display mt-4 mb-2 text-zinc-800 dark:text-zinc-200 flex items-center gap-3">
+                <span class="text-yellow-400"><%- icon('star') %></span>
+                Your Bookmarks
+            </h2>
+            <div class="h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden mb-6">
+                <div class="w-24 h-full bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+            </div>
+            <div id="bookmarks-grid" class="w-full grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-6 text-zinc-800">
+                <!-- Bookmarks will be injected here by bookmarks.js -->
+            </div>
+        </div>
+
         <%- partial('_partial/index/recommend') %>
         <div class="mt-6">
             <% theme.index_categories.forEach(function (category) { %>
