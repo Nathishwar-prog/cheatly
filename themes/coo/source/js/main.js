@@ -359,8 +359,8 @@ async function fetchGitHubStars() {
 
   try {
     // Try to get from cache first
-    const cached = localStorage.getItem('github-stars');
-    const cacheTime = localStorage.getItem('github-stars-time');
+    const cached = localStorage.getItem('cheatly-github-stars');
+    const cacheTime = localStorage.getItem('cheatly-github-stars-time');
     const now = Date.now();
 
     // Use cache if it's less than 5 minutes old
@@ -379,8 +379,8 @@ async function fetchGitHubStars() {
     const stars = data.stargazers_count;
 
     // Cache the result
-    localStorage.setItem('github-stars', stars.toString());
-    localStorage.setItem('github-stars-time', now.toString());
+    localStorage.setItem('cheatly-github-stars', stars.toString());
+    localStorage.setItem('cheatly-github-stars-time', now.toString());
 
     // Update UI with animation
     starsElements.forEach((element) => {
@@ -393,8 +393,8 @@ async function fetchGitHubStars() {
   } catch (error) {
     console.warn('Failed to fetch GitHub stars:', error);
     // Fallback to cached value or default
-    const cached = localStorage.getItem('github-stars');
-    const fallbackValue = cached ? formatStarCount(parseInt(cached)) : '6.5k';
+    const cached = localStorage.getItem('cheatly-github-stars');
+    const fallbackValue = cached ? formatStarCount(parseInt(cached)) : '1';
 
     starsElements.forEach((element) => {
       element.innerHTML = fallbackValue;
